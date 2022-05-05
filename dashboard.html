@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>YouGo | Dashboard</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="./vendor/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="./vendor/waves/waves.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+<div id="preloader">
+    <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+    </div>
+</div>
+
+<div id="main-wrapper">
+
+    <div class="header dashboard">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <nav class="navbar navbar-expand-lg navbar-light px-0 justify-content-between">
+                        <a class="navbar-brand" href="index.html"><img src="./images/logo.png" alt=""></a>
+
+                        <div class="dashboard_log my-2">
+                            <div class="d-flex align-items-center">
+                                <div class="profile_log dropdown">
+                                    <div class="user" data-toggle="dropdown">
+                                        <span class="thumb"><i class="la la-user"></i></span>
+                                        <span class="name">Maria Pascle</span>
+                                        <span class="arrow"><i class="la la-angle-down"></i></span>
+                                    </div>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="history.html" class="dropdown-item">
+                                            <i class="la la-book"></i> Historique
+                                        </a>
+                                        <a href="settings.html" class="dropdown-item">
+                                            <i class="la la-cog"></i> Paramètre
+                                        </a>
+                                        <a href="signin.html" class="dropdown-item logout">
+                                            <i class="la la-sign-out"></i> Déconnection
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="menu">
+            <ul>
+                <li>
+                    <a href="dashboard.html" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                        <span><i class="la la-igloo"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="buy-sell.html" data-toggle="tooltip" data-placement="right" title="Historique">
+                        <span><i class="la la-exchange"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html" data-toggle="tooltip" data-placement="right" title="Paramètre">
+                        <span><i class="la la-tools"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-title dashboard">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="page-title-content">
+                        <p>Bienvenue,
+                            <span> Maria Pascle</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-xxl-12">
+                    <div class="card balance-widget">
+                        <div class="card-header border-0 py-0">
+                            <h4 class="card-title">Votre recherche</h4>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="balance-widget">
+                                <div class="total-balance">
+                                    <h3>McDonald's Paris 15ème</h3>
+                                    <h6>Détails</h6>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li class="media">
+                                        <div class="media-body">
+                                            <h5 class="m-0">Adresse</h5>
+                                        </div>
+                                        <div class="text-right">
+                                            <h5>192 Rue de la Convention, 75015 Paris</h5>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="media-body">
+                                            <h5 class="m-0">Heures local</h5>
+                                        </div>
+                                        <div class="text-right">
+                                            <h5>16:26</h5>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="media-body">
+                                            <h5 class="m-0">Timezone</h5>
+                                        </div>
+                                        <div class="text-right">
+                                            <h5>Europe/Paris</h5>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-8 col-xxl-12">
+                    <div class="card profile_chart">
+                        <div class="card-header py-0">
+                            <div class="duration-option">
+                                <a id="lundi" class="active">Lundi</a>
+                                <a id="mardi">Mardi</a>
+                                <a id="mercredi" class="">Mercredi</a>
+                                <a id="jeudi" class="">Jeudi</a>
+                                <a id="vendredi" class="">Vendredi</a>
+                                <a id="samedi" class="">Samedi</a>
+                                <a id="dimanche" class="">Dimanche</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="timeline-chart"></div>
+                            <div class="chart-content text-center">
+                                <div class="row">
+                                    <div class="col-xl-4 col-sm-6 col-6">
+                                        <div class="chart-stat">
+                                            <p class="mb-1">Pick journalier</p>
+                                            <h5>75%</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-sm-6 col-6">
+                                        <div class="chart-stat">
+                                            <p class="mb-1">Pick maximum</p>
+                                            <h5>90%</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-sm-6 col-6">
+                                        <div class="chart-stat">
+                                            <p class="mb-1">Heures de pointe</p>
+                                            <h5>19h-22h</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-6 col-6">
+                                        <div class="chart-stat">
+                                            <p class="mb-1">Heures calme</p>
+                                            <h5>15h-18h</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-6 col-6">
+                                        <div class="chart-stat">
+                                            <p class="mb-1">Ouverture/Fermeture</p>
+                                            <h5>00h-8h</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-9 col-lg-8 col-xxl-12">
+                    <div class="card">
+                        <div class="card-header border-0 py-0">
+                            <h4 class="card-title">Historique de recherche</h4>
+                            <a href="#">Voir +</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="transaction-table">
+                                <div class="table-responsive">
+                                    <table class="table mb-0 table-responsive-sm">
+                                        <tbody>
+                                        <tr>
+                                            <td>Starbucks</td>
+                                            <td>Aéroport Orly Ouest, 94310 Orly</td>
+                                            <td><a href="#" style="color: white;" class="btn btn-primary">Détails</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer dashboard">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="copyright">
+                        <p>© Copyright 2022 <a href="#">ESGI</a> I All Rights Reserved</p>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="footer-social">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="./js/global.js"></script>
+
+<script src="./vendor/waves/waves.min.js"></script>
+
+<script src="./vendor/circle-progress/circle-progress.min.js"></script>
+<script src="./vendor/circle-progress/circle-progress-init.js"></script>
+
+
+<!--  flot-chart js -->
+<script src="./vendor/apexchart/apexcharts.min.js"></script>
+<script src="./vendor/apexchart/apexchart-init.js"></script>
+
+
+<!-- <script src="./js/dashboard.js"></script> -->
+<script src="./js/dashboard.js"></script>
+<script src="./js/scripts.js"></script>
+</body>
+
+</html>
