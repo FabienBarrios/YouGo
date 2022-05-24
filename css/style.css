@@ -27,11 +27,11 @@
  */
 @import url(../vendor/nice-select/css/nice-select.css);
 @import url("https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap");
-@import url("../icons/line-awesome/css/line-awesome.min.css");
-@import url("../icons/font-awesome/css/font-awesome.min.css");
-@import url("../icons/cryptocoins/css/cryptocoins.css");
-@import url("../icons/cryptocoins/css/cryptocoins-colors.css");
-@import url("../icons/material-design-iconic-font/css/materialdesignicons.min.css");
+@import url("../icons-css/line-awesome/css/line-awesome.min.css");
+@import url("../icons-css/font-awesome/css/font-awesome.min.css");
+@import url("../icons-css/cryptocoins/css/cryptocoins.css");
+@import url("../icons-css/cryptocoins/css/cryptocoins-colors.css");
+@import url("../icons-css/material-design-iconic-font/css/materialdesignicons.min.css");
 :root {
   --blue: #5e72e4;
   --indigo: #6610f2;
@@ -7615,7 +7615,6 @@ a {
     opacity: 1; }
 
 .content-body {
-  margin-left: 75px;
   margin-top: 15px; }
 
 .container-fluid {
@@ -7900,8 +7899,7 @@ a {
     top: 3px; } }
 
 .header.dashboard {
-  border-bottom: 1px solid #f1f4f8;
-  margin-left: 75px; }
+  border-bottom: 1px solid #f1f4f8;}
   .header.dashboard .navbar {
     padding: 0px; }
 
@@ -8061,7 +8059,6 @@ a {
   padding: 30px 0; }
   .page-title.dashboard {
     background: transparent;
-    margin-left: 75px;
     padding: 20px 0; }
   .page-title .page-title-content p {
     font-size: 18px;
@@ -8135,7 +8132,6 @@ a {
   padding: 27px 0px; }
   .footer.dashboard {
     background: #f9f9f9;
-    margin-left: 75px;
     border-color: #f1f4f8; }
   .footer .copyright p {
     margin: 0;

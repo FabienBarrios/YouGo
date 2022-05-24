@@ -1,6 +1,6 @@
 (function ($) {
 
-    var options = {
+    let options = {
         chart: {
             type: "bar",
             height: 300,
@@ -29,7 +29,7 @@
         },
         series: [{
             name: 'Affluence',
-            data: generateDayWiseTimeSeries(),
+            data: tab_values_1,
         }],
         markers: {
             size: 0,
@@ -43,6 +43,7 @@
         },
         xaxis: {
             categories:[
+                "24",
                 "01",
                 "02",
                 "03",
@@ -65,8 +66,7 @@
                 "20",
                 "21",
                 "22",
-                "23",
-                "24"
+                "23"
             ],
 
         },
@@ -101,39 +101,93 @@
         },
     };
 
-    var chart = new ApexCharts(
+    let chart = new ApexCharts(
         document.querySelector("#timeline-chart"),
         options
     );
 
     chart.render();
 
-    var resetCssClasses = function (activeEl) {
-        var els = document.querySelectorAll("button");
-        Array.prototype.forEach.call(els, function (el) {
-            el.classList.remove('active');
+    let resetCssClasses = function (activeEl) {
+        $(".day").each(function() {
+            this.classList.remove('active');
         });
-        activeEl.target.classList.add('active')
+
+        activeEl.target.classList.add('active');
     }
 
     document.querySelector("#lundi").addEventListener('click', function (e) {
         resetCssClasses(e)
-        chart.updateOptions({
-            xaxis: {
-                min: new Date('2 May 2022').getTime(),
-                max: new Date('2 May 2022').getTime(),
-            }
-        })
+        chart.updateSeries([{
+            data: tab_values_1
+        }])
+        $('#pick_day').text(Math.max.apply(null, tab_values_1)+"%");
+        //$('#hour_open').text(heureOuverture(tab_values_1));
+
     })
 
     document.querySelector("#mardi").addEventListener('click', function (e) {
         resetCssClasses(e);
+        chart.updateSeries([{
+            data: tab_values_2
+        }]);
+        $('#pick_day').text(Math.max.apply(null, tab_values_2)+"%");
     })
 
-    function generateDayWiseTimeSeries(s, count) {
-        var values = [0, 0, 0, 25, 35, 15, 35, 50, 90, 80, 30, 20, 0, 0, 0, 25, 35, 15, 35, 50, 75, 80, 30, 20];
-        return values;
+    document.querySelector("#mercredi").addEventListener('click', function (e) {
+        resetCssClasses(e)
+        chart.updateSeries([{
+            data: tab_values_3
+        }])
+        $('#pick_day').text(Math.max.apply(null, tab_values_3)+"%");
+    })
+
+    document.querySelector("#jeudi").addEventListener('click', function (e) {
+        resetCssClasses(e)
+        chart.updateSeries([{
+            data: tab_values_4
+        }])
+        $('#pick_day').text(Math.max.apply(null, tab_values_4)+"%");
+    })
+
+    document.querySelector("#vendredi").addEventListener('click', function (e) {
+        resetCssClasses(e)
+        chart.updateSeries([{
+            data: tab_values_5
+        }])
+        $('#pick_day').text(Math.max.apply(null, tab_values_5)+"%");
+    })
+
+    document.querySelector("#samedi").addEventListener('click', function (e) {
+        resetCssClasses(e)
+        chart.updateSeries([{
+            data: tab_values_6
+        }])
+        $('#pick_day').text(Math.max.apply(null, tab_values_6)+"%");
+    })
+
+    document.querySelector("#dimanche").addEventListener('click', function (e) {
+        resetCssClasses(e)
+        chart.updateSeries([{
+            data: tab_values_7
+        }])
+        $('#pick_day').text(Math.max.apply(null, tab_values_7)+"%");
+    })
+
+    function heureOuverture(tab){
+        let tab_index = [];
+        tab_index.push(getAllIndexes(tab, 0));
+        alert(tab_index);
+        return Math.min.apply(null, tab_index)+"h-"+(Math.max.apply(null, tab_index)+1)+"h";
+    }
+
+    function getAllIndexes(arr, val) {
+        let indexes = [], i;
+        for(i = 0; i < arr.length; i++)
+            if (arr[i] === val)
+                indexes.push(i);
+        return indexes;
     }
 
 
-})(jQuery); 
+})(jQuery);
