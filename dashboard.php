@@ -28,8 +28,6 @@
     </div>
 </div>
 
-
-
 <div id="main-wrapper">
     <?php
     if(isset($_POST['venue_name'])){
@@ -91,30 +89,20 @@
             </div>
         <?php
         }
+        else{
         $venue_name = $_GET['venue_name'];
         $venue_address = $_GET['venue_address'];
         $venue_lon = $_GET['venue_lon'];
         $venue_lat = $_GET['venue_lat'];
         $venue_timezone = $_GET['venue_timezone'];
         $venue_tag = $_GET['venue_type'];
-        $venue_id = 1; //retour api
+        $venue_id = add_venue($venue_address, $venue_name, $venue_lon, $venue_lat, $venue_timezone);
+        $venue_id = $venue_id["venue_id"];
 
         $competur = 0;
-        $sql = "";
-        /*foreach ($tab_data_venue_bestime as $data_venue_bestime){
-            foreach ($data_venue_bestime['analysis'] as $data){
-                foreach ($data['hour_analysis'] as $data2){
-                    if($competur == 23){
-                        $competur=0;
-                    }
-                    $competur++;
-                    $sql = "INSERT INTO hours_analysis (hour, day_row, intensity_text, venue_id, day_info) VALUES (".$data2['hour'].",".$data['day_raw'][$competur].",".$data2['intensity_txt'].",".$venue_id.",".$data['day_info']['day_int'].");";
-                    //echo $sql;
-                }
 
-            }
-        }*/
-
+        get_api_bestime2($venue_id, $venue_name, $venue_address);
+        }
     }
     else{?>
         <script>console.log("API_YOUGO");</script>
@@ -154,7 +142,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="page-title dashboard">
         <div class="container-fluid">

@@ -1,7 +1,7 @@
 <?php
 
-function connectDB(){
-    $pathEC2 = "ec2-3-91-201-59.compute-1.amazonaws.com";
+function connect_API(){
+    $pathEC2 = "ec2-3-84-200-78.compute-1.amazonaws.com";
     $prefixe = "http://";
     $port = ":5000";
     return $prefixe.$pathEC2.$port;
@@ -24,7 +24,7 @@ function urlparam($chaine){
 }
 
 function get_venue_all($address){
-    $url_api_yougo = connectDB();
+    $url_api_yougo = connect_API();
     $url_address = urlparam($address);
     $json = file_get_contents($url_api_yougo."/venue/".$url_address);
     return json_decode($json, true);
@@ -35,6 +35,34 @@ function get_api_bestime($name, $address){?>
 <?php
 }
 
+function get_api_bestime2($venue_id, $name, $address){?>
+    <script>test_api_bestime2("<?php echo $venue_id; ?>", "<?php echo $name; ?>", "<?php echo $address; ?>");</script>
+    <?php
+}
+
+function add_venue($venue_address, $venue_name, $venue_lon, $venue_lat, $venue_timezone){
+    $url_api_yougo = connect_API();
+    $url_address = urlparam($venue_address);
+    $url_name = urlparam($venue_name);
+    $url_timezone = urlparam($venue_timezone);
+    $url_complet = $url_address."?venue_name=".$url_name."&venue_lon=".$venue_lon."&venue_lat=".$venue_lat."&venue_timezone=".$url_timezone;
+    $json = file_get_contents($url_api_yougo."/add/venue/".$url_complet);
+    return json_decode($json, true);
+}
+
+function add_hours_analysis($venue_id, $hour, $day_row, $intensity_txt, $day_int){
+    $url_api_yougo = connect_API();
+    $url_complet = $venue_id."?hour=".$hour."&day_row=".$day_row."&intensity_txt=".urlparam($intensity_txt)."&day_int=".$day_int;
+    $json = file_get_contents($url_api_yougo."/add/hours_analysis/".str_replace("&amp;", "&", $url_complet));
+    return json_decode($json, true);
+}
+
+function add_venue_type($venue_id, $venue_tag){
+    $url_api_yougo = connect_API();
+    $url_complet = $venue_id."?venue_tag=".$venue_tag;
+    $json = file_get_contents($url_api_yougo."/add/venue_type/".$url_complet);
+    return json_decode($json, true);
+}
 ?>
 <script onerror="console.log('Erreur chargement dashboard.js')" onload="console.log('Chargement de dashboard.js réussi')" src="js/dashboard.js"></script>
 <script>
@@ -45,7 +73,7 @@ function get_api_bestime($name, $address){?>
         let tab_data;
 
         const params = new URLSearchParams({
-            'api_key_private': 'pri_a67a65c557224edb8d80195afe2e2607',
+            'api_key_private': 'pri_7dbb369a964f46f2988a3210f5a1153d',
             'venue_name': name,
             'venue_address': address
         });
@@ -58,7 +86,7 @@ function get_api_bestime($name, $address){?>
             tab = JSON.stringify(data);
             tab_data = JSON.parse(tab)
             let venue_name = tab_data.venue_info.venue_name;
-            let venue_address = tab_data.venue_info.venue_address;
+            let venue_address = address;
             let venue_lon = tab_data.venue_info.venue_lon;
             let venue_lat = tab_data.venue_info.venue_lat;
             let venue_timezone = tab_data.venue_info.venue_timezone;
@@ -82,7 +110,35 @@ function get_api_bestime($name, $address){?>
 
             location.href = url;
 
-            console.log(tab);
+            //console.log(tab);
+        });
+
+    }
+
+    function test_api_bestime2(venue_id, name, address){
+        let tab;
+
+        const params = new URLSearchParams({
+            'api_key_private': 'pri_7dbb369a964f46f2988a3210f5a1153d',
+            'venue_name': name,
+            'venue_address': address
+        });
+
+        fetch(url_api_bestime+`forecasts?${params}`, {
+            method: 'POST'
+        }).then(response => {
+            return response.json();
+        }).then(data => {
+            tab = JSON.stringify(data);
+            $.ajax({
+                url : 'AJAX/ajaxApiBesttime.php',
+                type : 'POST',
+                data : 'json=' + tab +'&venue_id=' + venue_id,
+                dataType : 'html',
+                success : function(code_html){
+                    //console.log(code_html);
+                }
+            });
         });
 
     }
