@@ -36,11 +36,22 @@
         $pick_day = 90;
         $hour_open = 0;
         $tab_api_yougo = get_venue_all($address_post);
+        $tab_horaire_monday = get_day_row(get_hour($tab_api_yougo[0]['venue_id'], 0));
+        $tab_horaire_tuesday = get_day_row(get_hour($tab_api_yougo[0]['venue_id'], 1));
+        $tab_horaire_wednesday = get_day_row(get_hour($tab_api_yougo[0]['venue_id'], 2));
+        $tab_horaire_thursday = get_day_row(get_hour($tab_api_yougo[0]['venue_id'], 3));
+        $tab_horaire_friday = get_day_row(get_hour($tab_api_yougo[0]['venue_id'], 4));
+        $tab_horaire_saturday = get_day_row(get_hour($tab_api_yougo[0]['venue_id'], 5));
+        $tab_horaire_sunday = get_day_row(get_hour($tab_api_yougo[0]['venue_id'], 6));
         ?>
         <script>
-            let tab_values_1 = [0, 0, 0, 25, 35, 15, 35, 50, 90, 80, 30, 20, 0, 0, 0, 25, 35, 15, 35, 50, 75, 80, 30, 20];
-            let tab_values_2 = [0, 0, 0, 25, 35, 15, 35, 50, 90, 80, 30, 20, 0, 0, 0, 25, 35, 15, 35, 50, 75, 0, 30, 20];
-            let tab_values_3 = [0, 0, 0, 25, 35, 15, 35, 50, 90, 80, 30, 20, 0, 0, 0, 25, 35, 15, 35, 50, 75, 20, 30, 20];
+            let tab_values_1 = [<?php echo $tab_horaire_monday ?>];
+            let tab_values_2 = [<?php echo $tab_horaire_tuesday ?>];
+            let tab_values_3 = [<?php echo $tab_horaire_wednesday ?>];
+            let tab_values_4 = [<?php echo $tab_horaire_thursday ?>];
+            let tab_values_5 = [<?php echo $tab_horaire_friday ?>];
+            let tab_values_6 = [<?php echo $tab_horaire_saturday ?>];
+            let tab_values_7 = [<?php echo $tab_horaire_sunday ?>];
         </script>
     <?php
     }

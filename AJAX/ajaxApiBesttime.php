@@ -10,11 +10,11 @@ foreach ($tab_data_venue_bestime['venue_info']['venue_types'] as $data){
 }
 foreach ($tab_data_venue_bestime['analysis'] as $data){
         foreach ($data['hour_analysis'] as $data2){
-            if($competur == 23){
+            if($competur == 24){
                 $competur=0;
             }
-            $competur++;
             add_hours_analysis($venue_id, $data2['hour'], $data['day_raw'][$competur], $data2['intensity_txt'], $data['day_info']['day_int']);
+            $competur++;
         }
 }
 

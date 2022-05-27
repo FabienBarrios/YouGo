@@ -1,7 +1,7 @@
 <?php
 
 function connect_API(){
-    $pathEC2 = "ec2-3-84-200-78.compute-1.amazonaws.com";
+    $pathEC2 = "ec2-54-227-154-226.compute-1.amazonaws.com";
     $prefixe = "http://";
     $port = ":5000";
     return $prefixe.$pathEC2.$port;
@@ -17,6 +17,20 @@ function heureOuverture($tab){
     return min($tab_index)."h-".(max($tab_index)+1)."h";
 }
 
+function get_day_row($tab_horaire){
+    $tab = "";
+    $compteur = 0;
+    foreach ($tab_horaire as $data){
+        if ($compteur == 0){
+            $tab .= $data['day_row'];
+        }else{
+            $tab .= ", ".$data['day_row'];
+        }
+        $compteur++;
+    }
+    return $tab;
+}
+
 function urlparam($chaine){
     $search  = array(' ', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'à', 'á', 'â', 'ã', 'ä', 'å', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ð', 'ò', 'ó', 'ô', 'õ', 'ö', 'ù', 'ú', 'û', 'ü', 'ý', 'ÿ');
     $replace = array('%20', 'A', 'A', 'A', 'A', 'A', 'A', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'Y', 'a', 'a', 'a', 'a', 'a', 'a', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'y', 'y');
@@ -27,6 +41,12 @@ function get_venue_all($address){
     $url_api_yougo = connect_API();
     $url_address = urlparam($address);
     $json = file_get_contents($url_api_yougo."/venue/".$url_address);
+    return json_decode($json, true);
+}
+
+function get_hour($venue_id, $day){
+    $url_api_yougo = connect_API();
+    $json = file_get_contents($url_api_yougo."/venue/".$venue_id."/hours?day=".$day);
     return json_decode($json, true);
 }
 
@@ -130,6 +150,7 @@ function add_venue_type($venue_id, $venue_tag){
             return response.json();
         }).then(data => {
             tab = JSON.stringify(data);
+            console.log(tab);
             $.ajax({
                 url : 'AJAX/ajaxApiBesttime.php',
                 type : 'POST',

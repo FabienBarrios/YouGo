@@ -174,13 +174,6 @@
         $('#pick_day').text(Math.max.apply(null, tab_values_7)+"%");
     })
 
-    function heureOuverture(tab){
-        let tab_index = [];
-        tab_index.push(getAllIndexes(tab, 0));
-        alert(tab_index);
-        return Math.min.apply(null, tab_index)+"h-"+(Math.max.apply(null, tab_index)+1)+"h";
-    }
-
     function getAllIndexes(arr, val) {
         let indexes = [], i;
         for(i = 0; i < arr.length; i++)
