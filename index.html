@@ -60,7 +60,7 @@
                             <div class="intro-form">
                                 <form method="post" action="dashboard.php">
                                     <input id="venue_name" name="venue_name"
-                                           class="form-control" placeholder="Start typing your address...">
+                                           class="form-control" placeholder="Lieu recherché ...">
                                     <input id="venue_address" name="venue_address"  style="display: none;">
                                     <!--<input type="text" class="form-control" placeholder="Rechercher lieu">-->
                                     <button type="submit" >
@@ -197,7 +197,7 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-12">
                         <div class="appss-content">
-                            <h3>Application mobile</h3>
+                            <h3>Application mobile <span style="font-size: 11px">(Prochainement)</span></h3>
                             <p>Consulter l'affluence de votre endroit préferé de partout et sans contrainte depuis votre
                                 smartphone.</p>
                             <div class="mt-4">
@@ -239,17 +239,17 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDBoT-d7DyNlNrAA5_DJ63hti0JXMbnu8A"></script>
     <script>
         function initialize() {
-            var input = document.getElementById('venue_name');
-            var options = {
+            const input = document.getElementById('venue_name');
+            const options = {
                 types: ['establishment']
             };
-            var autocomplete = new google.maps.places.Autocomplete(input, options);
+            const autocomplete = new google.maps.places.Autocomplete(input, options);
 
             autocomplete.addListener('place_changed', function() {
 
-                var place = autocomplete.getPlace();
+                const place = autocomplete.getPlace();
 
-                var address = '';
+                let address = '';
                 if (place.address_components) {
                     address = [
                         (place.address_components[0] && place.address_components[0].short_name || ''),

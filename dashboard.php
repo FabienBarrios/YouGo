@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -115,7 +114,7 @@
         get_api_bestime2($venue_id, $venue_name, $venue_address);
         }
     }
-    else{?>
+    else if($tab_api_yougo != null){?>
         <script>console.log("API_YOUGO");</script>
         <?php
         foreach ($tab_api_yougo as $data_venue){
@@ -127,7 +126,15 @@
             $venue_timezone = $data_venue['venue_timezone'];
             $venue_tag = $data_venue['venue_tag'];
         }
-    }?>
+    }
+    else{?>
+        <script>
+            console.log("Lieux introuvable");
+            window.location.href = "400.html";
+
+        </script>
+    <?php }
+    ?>
     <div class="header">
         <div class="container">
             <div class="row">
@@ -246,7 +253,7 @@
                                     <div class="col-xl-6 col-sm-6 col-6">
                                         <div class="chart-stat">
                                             <p class="mb-1">Heures de pointe</p>
-                                            <h5>19h-22h</h5>
+                                            <h5>12h-14h</h5>
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-sm-6 col-6">
@@ -258,7 +265,7 @@
                                     <div class="col-xl-6 col-sm-6 col-6">
                                         <div class="chart-stat">
                                             <p class="mb-1">Ouverture/Fermeture</p>
-                                            <h5 id="hour_open" ><?php echo $hour_open; ?></h5>
+                                            <h5 id="hour_open" ><?php /*echo $hour_open; */?>02h-09h</h5>
                                         </div>
                                     </div>
                                 </div>

@@ -1,7 +1,7 @@
 <?php
 
 function connect_API(){
-    $pathEC2 = "ec2-54-227-154-226.compute-1.amazonaws.com";
+    $pathEC2 = "ec2-54-175-42-87.compute-1.amazonaws.com";
     $prefixe = "http://";
     $port = ":5000";
     return $prefixe.$pathEC2.$port;
@@ -122,13 +122,10 @@ function add_venue_type($venue_id, $venue_tag){
             let tab_values_7 = concactTab(tab_data['analysis'][6]['day_raw']);
 
 
-            const url = "./dashboard.php?venue_name=" + venue_name + "&venue_address=" + venue_address + "&venue_lon=" + venue_lon
+            location.href = "./dashboard.php?venue_name=" + venue_name + "&venue_address=" + venue_address + "&venue_lon=" + venue_lon
                 + "&venue_lat=" + venue_lat + "&venue_timezone=" + venue_timezone + "&venue_type=" + venue_type
                 + "&venue_id=" + venue_id + "&monday=" + tab_values_1 + "&tuesday=" + tab_values_2 + "&wednesday=" + tab_values_3
                 + "&thursday=" + tab_values_4 + "&friday=" + tab_values_5 + "&saturday=" + tab_values_6 + "&sunday=" + tab_values_7;
-
-
-            location.href = url;
 
             //console.log(tab);
         });
