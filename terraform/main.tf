@@ -56,8 +56,8 @@ resource "aws_instance" "test" {
   engine_version = "8.0.27"
   instance_class = "db.t2.micro"
   name = "yougodb"
-  username = "admin"
-  password = "azertyuiop"
+  username = ""
+  password = ""
   
 }
 variable "ami_id" {
