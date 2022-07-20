@@ -47,6 +47,19 @@ resource "aws_instance" "test" {
 
   tags = var.tags
 }
+
+ resource "aws_db_instance" "rds_instance" {
+  allocated_storage = 20
+  identifier = "rds-terraform"
+  storage_type = "gp2"
+  engine = "mysql"
+  engine_version = "8.0.27"
+  instance_class = "db.t2.micro"
+  name = "yougodb"
+  username = "admin"
+  password = "azertyuiop"
+  
+}
 variable "ami_id" {
 
   # I am using amazon linux image
